@@ -34,7 +34,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".Fram_now"
+            android:name=".Farm_now"
             android:label="@string/title_activity_fram_now" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

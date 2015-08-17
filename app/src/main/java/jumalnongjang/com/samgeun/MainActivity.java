@@ -114,7 +114,7 @@ public class MainActivity extends Activity {
         btn_pic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent IntentFram = new Intent(MainActivity.this, Fram_now.class);
+                Intent IntentFram = new Intent(MainActivity.this, Farm_now.class);
                 startActivity(IntentFram);
 
 

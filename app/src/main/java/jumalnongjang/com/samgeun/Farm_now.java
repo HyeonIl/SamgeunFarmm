@@ -20,15 +20,17 @@ import android.widget.TextView;
 import java.util.Calendar;
 import java.util.TimeZone;
 
+import jumalnongjang.com.samgeun.Info.IpCam;
 
-public class Fram_now extends ActionBarActivity {
+public class Farm_now extends ActionBarActivity {
 
     //웹뷰 2개를 사용하여 각각의 웹뷰에서 이미지를 출력한다.
     //현재 프로젝트 진행중의 카메라는 2대이고 카메라 갯수가 늘어남에따라 웹뷰의 숫자도 늘어나야한다
     //아무래도 주소가 jpg가 아니라 cgi 를 통한 뭔가가 있는데 그것때문에 testCam이 있어야 한다. 웹뷰의 갯수만큼 testCam뷰의 숫자도 늘어나야함
 
+    IpCam cam1,cam2;
     WebView cWeb1,cWeb2,testCam,testCam2;
-    String url;
+    String url,url2;
     Calendar myCal;
     int cam_Year,cam_Month,cam_Day,cam_Hour;
 
@@ -36,28 +38,38 @@ public class Fram_now extends ActionBarActivity {
     TextView todayInfo;
 
     //카메라의 ID와 PW 및 IP와 Port선언
+    /*
     final static String Cam1_IP = "168.115.119.104";
     final static String Cam1_HttpPort = "8081";
     final static String Cam1_ID = "admin";
     final static String Cam1_PW = "gusdlfdl3.";
+    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fram_now);
         setTitle("실시간 농장사진");
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        url = "http://" + Cam1_IP + ":" + Cam1_HttpPort + "/stw-cgi/video.cgi?msubmenu=snapshot&action=view&Channel=0";
 
         //캘린더 클래스의 객체를 받아와서 사용가능하게 함, 또한 현재 휴대폰의 날짜 및 시간 정보를 받아오게 한다.
+        //TimeZone은 휴대폰 시간과 실시간이 제대로 안맞을경우 서울표준시간을 받아오기 위하여 선언한다.
+
         TimeZone seoul = TimeZone.getTimeZone("Asia/Seoul");
         myCal = Calendar.getInstance(seoul);
-
         cam_Year = myCal.get(Calendar.YEAR);
         cam_Month = (myCal.get(Calendar.MONTH) + 1);
         cam_Day = myCal.get(Calendar.DAY_OF_MONTH);
         cam_Hour = myCal.get(Calendar.HOUR_OF_DAY);
+
+        //카메라 클래스를 선언하여 정보를 대입
+        cam1 = new IpCam("168.115.119.131","8081","admin","gusdlfdl3.",0);
+        Log.d("카메라", "" + cam1.getCamNumber());
+        cam2 = new IpCam("168.115.119.114","admin","gusdlfdl3.",1);
+        Log.d("카메라", "" + cam2.getCamNumber());
+
+        url = cam1.getJpegSnapShotURL();
+        url2 = cam2.getJpegSnapShotURL();
 
         //xml 파일과 자바 소스의 연동
         cWeb1 = (WebView)findViewById(R.id.camera1);
@@ -66,50 +78,54 @@ public class Fram_now extends ActionBarActivity {
         testCam2 = (WebView)findViewById(R.id.testCam2);
         todayInfo = (TextView)findViewById(R.id.todayText);
 
-
-
+        //웹뷰를 Load함
         openWebView();
 
         todayInfo.setText("이 영상은 " + cam_Year + "년 " + cam_Month + "월 " + cam_Day + "일 " + cam_Hour + "시"
                 + "에 촬영된 영상 입니다.");
     }
 
+
     // 버튼이 눌렷을 때 하는 행동
     public void mOnClick(View v){
 
-        String url1 = url;
+        //String url1 = url;
 
-        Log.d("주소", url1);
+        Log.d("주소1", url);
+        Log.d("주소2", url2);
 
         switch (v.getId()){
             case R.id.btnReload:
                 cWeb1.loadData(createHtmlBody(url), "text/html", null);
-                cWeb2.loadData(createHtmlBody(url), "text/html", null);
+                cWeb2.loadData(createHtmlBody(url2), "text/html", null);
                 break;
         }
     }
 
     public void openWebView(){
 
-        cWeb1 = webViewSet(cWeb1);
-        cWeb2 = webViewSet(cWeb2);
-        testCam = webViewSet(testCam);
-        //testCam2 = webViewSet(testCam2);
+        cWeb1 = webViewSet(cWeb1,cam1);
+        cWeb2 = webViewSet(cWeb2,cam2);
+        testCam = webViewSet(testCam,cam1);
+        testCam2 = webViewSet(testCam2,cam2);
 
 
+        //API Version 이 KitKat 이하일 때와 이상일때를 나눈다.
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
             cWeb1.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         }else{
             cWeb1.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
         }
 
+        //일단 왜그런지는 모르겟지만 테스트웹뷰도 불러와야한다
         testCam.loadUrl(url);
+        testCam2.loadUrl(url2);
         cWeb1.loadData(createHtmlBody(url), "text/html", null);
-        cWeb2.loadData(createHtmlBody(url), "text/html", null);
-
-        Log.d("주소씨발!!", createHtmlBody(url));
+        cWeb2.loadData(createHtmlBody(url2), "text/html", null);
     }
 
+    //웹뷰의 이미지가 디바이스의 크기에 맞추어서 가운데 정렬과 100%의 크기에 나올 수 있도록 Http Tag를 추가하여 주소를
+    //로드 하는 메소드
     public String createHtmlBody(String imageURL){
         StringBuffer sb = new StringBuffer("<HTML>");
         sb.append("<HEAD>");
@@ -122,13 +138,14 @@ public class Fram_now extends ActionBarActivity {
     }
 
     //웹뷰의 셋팅을 담당하는 함수
-    private WebView webViewSet(WebView wv){
+    private WebView webViewSet(WebView wv, final IpCam cam){
 
-        wv.setWebViewClient(new MyWebClient());
-
-        cWeb1.getSettings().setBuiltInZoomControls(true);
-        cWeb2.getSettings().setBuiltInZoomControls(true);
-
+        wv.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
+                handler.proceed(cam.getCamID(), cam.getCamPW());
+            }
+        });
 
         /*
         wv.setVerticalScrollBarEnabled(false);
@@ -141,16 +158,25 @@ public class Fram_now extends ActionBarActivity {
         WebSettings set = wv.getSettings();
         set.setJavaScriptEnabled(true);
         set.setSupportZoom(true);
+        set.setBuiltInZoomControls(true);
 
         return wv;
     }
 
-    //URL을 접근시 인증을 처리해주는 부분
-    class MyWebClient extends WebViewClient{
 
+    /*
+    //URL을 접근시 인증을 처리해주는 부분
+    class CamWebViewClient extends WebViewClient{
         @Override
         public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
-            handler.proceed(Cam1_ID,Cam1_PW);
+            handler.proceed(cam1.getCamID(),cam1.getCamPW());
         }
     }
+    class CamWebViewClient2 extends WebViewClient{
+        @Override
+        public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
+            handler.proceed(cam2.getCamID(),cam2.getCamPW());
+        }
+    }
+    */
 }
