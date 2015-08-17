@@ -37,14 +37,6 @@ public class Farm_now extends ActionBarActivity {
     //오늘 날짜를 보여주기 위한 텍스트 뷰
     TextView todayInfo;
 
-    //카메라의 ID와 PW 및 IP와 Port선언
-    /*
-    final static String Cam1_IP = "168.115.119.104";
-    final static String Cam1_HttpPort = "8081";
-    final static String Cam1_ID = "admin";
-    final static String Cam1_PW = "gusdlfdl3.";
-    */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +54,7 @@ public class Farm_now extends ActionBarActivity {
         cam_Day = myCal.get(Calendar.DAY_OF_MONTH);
         cam_Hour = myCal.get(Calendar.HOUR_OF_DAY);
 
+        //카메라의 ID와 PW 및 IP와 Port선언
         //카메라 클래스를 선언하여 정보를 대입
         cam1 = new IpCam("168.115.119.131","8081","admin","gusdlfdl3.",0);
         Log.d("카메라", "" + cam1.getCamNumber());
@@ -89,10 +82,8 @@ public class Farm_now extends ActionBarActivity {
     // 버튼이 눌렷을 때 하는 행동
     public void mOnClick(View v){
 
-        //String url1 = url;
-
-        Log.d("주소1", url);
-        Log.d("주소2", url2);
+//        Log.d("주소1", url);
+//        Log.d("주소2", url2);
 
         switch (v.getId()){
             case R.id.btnReload:
@@ -108,7 +99,6 @@ public class Farm_now extends ActionBarActivity {
         cWeb2 = webViewSet(cWeb2,cam2);
         testCam = webViewSet(testCam,cam1);
         testCam2 = webViewSet(testCam2,cam2);
-
 
         //API Version 이 KitKat 이하일 때와 이상일때를 나눈다.
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
@@ -140,20 +130,14 @@ public class Farm_now extends ActionBarActivity {
     //웹뷰의 셋팅을 담당하는 함수
     private WebView webViewSet(WebView wv, final IpCam cam){
 
+        //웹뷰 클라이언트를 불러오면서 onReceivedHttpAuthRequest메소드를 재정의 하여 카메라의 ID와 PW를
+        //이용하여 카메라에 접근할 수 있도록 한다
         wv.setWebViewClient(new WebViewClient() {
             @Override
             public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
                 handler.proceed(cam.getCamID(), cam.getCamPW());
             }
         });
-
-        /*
-        wv.setVerticalScrollBarEnabled(false);
-        wv.setVerticalScrollbarOverlay(false);
-        wv.setHorizontalScrollBarEnabled(false);
-        wv.setHorizontalScrollbarOverlay(false);
-        wv.setInitialScale(100);
-        */
 
         WebSettings set = wv.getSettings();
         set.setJavaScriptEnabled(true);
@@ -162,21 +146,4 @@ public class Farm_now extends ActionBarActivity {
 
         return wv;
     }
-
-
-    /*
-    //URL을 접근시 인증을 처리해주는 부분
-    class CamWebViewClient extends WebViewClient{
-        @Override
-        public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
-            handler.proceed(cam1.getCamID(),cam1.getCamPW());
-        }
-    }
-    class CamWebViewClient2 extends WebViewClient{
-        @Override
-        public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
-            handler.proceed(cam2.getCamID(),cam2.getCamPW());
-        }
-    }
-    */
 }
