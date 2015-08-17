@@ -1,0 +1,235 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                tools:context="jumalnongjang.com.samgeun.Intro">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+
+        <ImageView
+            android:contentDescription="@string/contentDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@drawable/farmer"
+            android:layout_weight="0.20"
+            android:id="@+id/imageView2"
+            android:layout_gravity="center"
+            />
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text=" 금정구 두구동 체육공원에 위치하여 교통이 편리하고 가족들이 안심하고 먹을 수 있는 무공해 농작물을 가꾸는 사람들이 모이는 가족같은 농장을 만들고자 2004년 4월에 개장한 주말농장입니다. 아이들에게는 자연과의 어울림을 어른들께는 유년시절의 추억을 다시금 떠올릴 수 있는 살아숨쉬는 공간을 만들어 보세요. 찾아오시는 그 길도 행복해질 수 있도록 정성을 다하겠습니다."
+            android:textSize="9pt"
+            android:id="@+id/textView_intro_main"/>
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            />
+        <TableLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical" >
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="농장명"
+                    android:background="#9AB59E"
+                    android:textColor="#000000"
+                    android:textSize="9pt" />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="삼근농장"
+                    android:background="#F8F9E0"
+                    android:textColor="#000000"
+                    android:textSize="9pt" />
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="대표자"
+                    android:background="#9AB59E"
+                    android:textColor="#000000"
+                    android:textSize="9pt" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="박지근"
+                    android:background="#F8F9E0"
+                    android:textColor="#000000"
+                    android:textSize="9pt" />
+
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="위치"
+                    android:background="#9AB59E"
+                    android:textColor="#000000"
+                    android:textSize="9pt" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="부산 금정구 두구동 629 - 10"
+                    android:background="#F8F9E0"
+                    android:textColor="#000000"
+                    android:textSize="9pt" />
+
+            </TableRow>
+            <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="연락처"
+                android:background="#9AB59E"
+                android:textColor="#000000"
+                android:textSize="9pt" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="011-9501-6901"
+                android:background="#F8F9E0"
+                android:textColor="#000000"
+                android:textSize="9pt" />
+
+        </TableRow>
+            <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="분양 면적"
+                android:background="#9AB59E"
+                android:textColor="#000000"
+                android:textSize="9pt" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="3,300㎥"
+                android:background="#F8F9E0"
+                android:textColor="#000000"
+                android:textSize="9pt" />
+
+        </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="신청"
+                    android:background="#9AB59E"
+                    android:textColor="#000000"
+                    android:textSize="9pt" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="전화요망"
+                    android:background="#F8F9E0"
+                    android:textColor="#000000"
+                    android:textSize="9pt" />
+
+            </TableRow>
+        </TableLayout>
+
+
+
+
+        ImageView
+            android:contentDescription="@string/contentDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:background="@drawable/intro_ditail"/>
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20px"
+            android:layout_gravity="center_horizontal"/>
+
+        <Button
+            android:layout_width="312dp"
+            android:layout_height="211.2dp"
+            android:id="@+id/btn_map"
+            android:layout_gravity="center"
+            android:background="@drawable/intro_map2"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="9pt"
+            android:text="- 오시는 길 -"
+            android:id="@+id/textView4"/>
+
+    </LinearLayout>
+
+
+
+</ScrollView>

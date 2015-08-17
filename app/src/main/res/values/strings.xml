@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Samgeun</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_weather">weather</string>
+    <string name="title_activity_intro">intro</string>
+    <string name="title_activity_fram_now">fram_now</string>
+    <string name="title_activity_community">커뮤니티</string>
+    <string name="contentDescription">contentDescription</string>
+</resources>
