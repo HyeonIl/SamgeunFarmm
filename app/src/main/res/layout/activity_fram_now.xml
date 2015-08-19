@@ -4,56 +4,65 @@
               android:layout_height="match_parent"
               android:orientation="vertical"
               android:weightSum="100"
-              tools:context=".MainActivity"
               android:background="#F2F3E1"
     >
-    <!--android:background="@android:color/white-->
 
+    <!--갱신 버튼과 시간 정보가 출력되는 텍스트 뷰가 있는
+        리니어 레이아웃-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="horizontal"
-        android:layout_weight="5">
+        android:layout_weight="16"
+        android:weightSum="100">
 
         <Button
             android:id="@+id/btnReload"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:background="@drawable/btn_reload"
             android:onClick="mOnClick"
-            android:text="갱신"
-            android:textSize="30sp"/>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="28"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/todayText"
-            android:text="null"/>
+            android:text="null"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="72"/>
 
     </LinearLayout>
 
+
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="카메라1"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="7"/>
 
     <WebView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="43"
+        android:layout_weight="35"
         android:id="@+id/camera1" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="카메라2"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="7"/>
 
     <WebView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="43"
+        android:layout_weight="35"
         android:id="@+id/camera2" />
+
+
+    <!--이건 사진을 제대로 보여주기위한 눈에는 보이지 않는 웹뷰-->
 
     <WebView
         android:layout_width="0dp"
