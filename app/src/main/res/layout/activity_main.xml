@@ -3,77 +3,97 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/black_main"
-        android:orientation="horizontal"
+        android:orientation="vertical"
+        android:weightSum="100"
         tools:context=".MainActivity">
-        <!--android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"-->
 
 
-
-    <RelativeLayout
+    <!-- 디바이스 전체에서 위의 40%의 여백-->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center">
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="40"/>
+
+    <!-- 위의 두개의 메뉴를 감싸는 리니어 레이아웃
+         weight 값을 주어서 디바이스 전체에서 22%의 비율을 가지고 이 리니어 레이아웃
+         아래에 오는 뷰들(버튼,공백(스페이스)들이 수평,수직 모두 가운데 정렬 되게 한다
+
+         리니어레이아웃 아래에 포함된 버튼 2개는 리니어 레이아웃의 가로에 할당된 비율에서
+         각 각 40%의 비율 그리고 공백은 4%의 비율을 가진다
+         -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_weight="22"
+        android:weightSum="100">
 
         <Button
             android:id="@+id/Btn_intro"
-            android:layout_width="150dp"
-            android:layout_height="130dp"
-            android:layout_alignStart="@+id/Btn_weather"
-            android:layout_centerVertical="true"
-            android:layout_gravity="bottom"
-            android:background="@drawable/btn_intro" />
-
-        <Button
-            android:id="@+id/Btn_talk"
-            android:layout_width="150dp"
-            android:layout_height="130dp"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/space3"
-            android:layout_gravity="bottom"
-            android:background="@drawable/btn_talk" />
-
-        <Button
-            android:id="@+id/Btn_Fram_now"
-            android:layout_width="150dp"
-            android:layout_height="130dp"
-            android:layout_above="@+id/space2"
-            android:layout_gravity="bottom"
-            android:layout_toEndOf="@+id/space"
-            android:background="@drawable/btn_pic" />
-
-        <Button
-            android:id="@+id/Btn_weather"
-            android:layout_width="150dp"
-            android:layout_height="130dp"
-            android:layout_below="@+id/space2"
-            android:layout_gravity="center_vertical"
-            android:layout_toStartOf="@+id/space"
-            android:background="@drawable/btn_wea" />
-
+            android:background="@drawable/btn_intro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="40"/>
         <Space
             android:id="@+id/space"
-            android:layout_width="20px"
-            android:layout_height="20px"
-            android:layout_alignBottom="@+id/Btn_talk"
-            android:layout_toStartOf="@+id/Btn_talk" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="4"/>
+        <Button
+            android:id="@+id/Btn_Fram_now"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="40"
+            android:background="@drawable/btn_pic" />
 
-        <Space
-            android:id="@+id/space2"
-            android:layout_width="20px"
-            android:layout_height="20px"
-            android:layout_alignStart="@+id/Btn_intro"
-            android:layout_below="@+id/Btn_intro" />
+    </LinearLayout>
 
-        <Space
-            android:id="@+id/space3"
-            android:layout_width="20px"
-            android:layout_height="20px"
-            android:layout_below="@+id/Btn_intro"
-            android:layout_toEndOf="@+id/Btn_intro" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"/>
 
-    </RelativeLayout>
+    <!--하위 2가지의 메뉴를 감싸는 레이아웃 리니어 레이아웃
+        weight 값을 주어서 디바이스 전체에서 22%의 비율을 가지고 이 리니어 레이아웃
+         아래에 오는 뷰들(버튼,공백(스페이스)들이 수평,수직 모두 가운데 정렬 되게 한다
+
+         리니어레이아웃 아래에 포함된 버튼 2개는 리니어 레이아웃의 가로에 할당된 비율에서
+         각 각 40%의 비율 그리고 공백은 4%의 비율을 가진다
+         -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_weight="22"
+        android:weightSum="100">
+
+            <Button
+                android:id="@+id/Btn_weather"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="40"
+                android:background="@drawable/btn_wea" />
+            <Space
+                android:id="@+id/space2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="4" />
+            <Button
+                android:id="@+id/Btn_talk"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="40"
+                android:background="@drawable/btn_talk" />
+
+    </LinearLayout>
+
+    <!-- 나머지 16%의 비율을 공백으로 채운다-->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="16"/>
 
 </LinearLayout>

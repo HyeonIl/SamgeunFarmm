@@ -8,7 +8,7 @@ public class IpCam {
     private String httpPort;
     private String camID;
     private String camPW;
-    private int camNumber;
+    private int camNumber;          //카메라의 번호들을 관리
 
     //      res/values/cam.xml 에 있는 value값들을 가져와서 생성자로 만든다
     public IpCam(String[] valueArray, int camNumber){
