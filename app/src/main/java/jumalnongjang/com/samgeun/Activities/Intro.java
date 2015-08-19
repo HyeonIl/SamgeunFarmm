@@ -1,4 +1,4 @@
-package jumalnongjang.com.samgeun;
+package jumalnongjang.com.samgeun.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import jumalnongjang.com.samgeun.R;
 
 
 public class Intro extends ActionBarActivity {

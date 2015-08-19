@@ -1,4 +1,4 @@
-package jumalnongjang.com.samgeun;
+package jumalnongjang.com.samgeun.Activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+
+import jumalnongjang.com.samgeun.R;
 
 
 public class MainActivity extends Activity {

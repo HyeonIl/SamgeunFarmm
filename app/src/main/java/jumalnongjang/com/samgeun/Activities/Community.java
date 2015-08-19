@@ -1,4 +1,4 @@
-package jumalnongjang.com.samgeun;
+package jumalnongjang.com.samgeun.Activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -12,6 +12,8 @@ import android.view.Window;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+
+import jumalnongjang.com.samgeun.R;
 
 
 public class Community extends ActionBarActivity {

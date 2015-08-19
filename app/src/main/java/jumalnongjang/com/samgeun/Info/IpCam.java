@@ -10,7 +10,10 @@ public class IpCam {
     private String camPW;
     private int camNumber;          //카메라의 번호들을 관리
 
-    //      res/values/cam.xml 에 있는 value값들을 가져와서 생성자로 만든다
+    /**
+     * @param valueArray : res/values/cam.xml 에 있는 value값들을 가져와서 생성자로 만든다
+     * @param camNumber : 여러대의 카메라를 구분하기 위해 생성할 때 번호를 부여한다.
+     */
     public IpCam(String[] valueArray, int camNumber){
         this.ipAddress = valueArray[0];
         this.httpPort = valueArray[1];
@@ -51,9 +54,9 @@ public class IpCam {
         this.camNumber = camNumber;
     }
 
-
-
-    //URL 반환 메소드
+    /**
+     * @return : API주소를 더한 전체 Jpg 스냅샷 이벤트 주소를 리턴한다
+     */
     public String getJpegSnapShotURL(){
 
         String resultURL;

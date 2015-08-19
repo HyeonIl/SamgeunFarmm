@@ -1,4 +1,4 @@
-package jumalnongjang.com.samgeun;
+package jumalnongjang.com.samgeun.Activities;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -30,6 +30,8 @@ import java.util.Locale;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
+import jumalnongjang.com.samgeun.R;
 
 public class Weather extends ActionBarActivity {
 

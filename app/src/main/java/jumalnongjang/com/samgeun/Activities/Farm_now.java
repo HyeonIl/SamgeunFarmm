@@ -1,17 +1,10 @@
-package jumalnongjang.com.samgeun;
+package jumalnongjang.com.samgeun.Activities;
 
-import android.graphics.Point;
-import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Display;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.webkit.HttpAuthHandler;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -22,6 +15,7 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 import jumalnongjang.com.samgeun.Info.IpCam;
+import jumalnongjang.com.samgeun.R;
 
 public class Farm_now extends ActionBarActivity {
 
@@ -87,7 +81,9 @@ public class Farm_now extends ActionBarActivity {
     }
 
 
-    // 버튼이 눌렷을 때 하는 행동
+    /**
+     * 갱신버튼이 눌렸을 때의 이벤트 처리
+     */
     public void mOnClick(View v){
 
         switch (v.getId()){
@@ -99,6 +95,9 @@ public class Farm_now extends ActionBarActivity {
         }
     }
 
+    /**
+     * 웹뷰들을 열고 해당 주소를 웹뷰에 전송하여 실행시킴
+     */
     public void openWebView(){
 
         cWeb1 = webViewSet(cWeb1,cam1);
