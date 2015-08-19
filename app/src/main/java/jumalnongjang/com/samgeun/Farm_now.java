@@ -16,6 +16,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -56,9 +57,13 @@ public class Farm_now extends ActionBarActivity {
 
         //카메라의 ID와 PW 및 IP와 Port선언
         //카메라 클래스를 선언하여 정보를 대입
-        cam1 = new IpCam("168.115.119.131","8081","admin","gusdlfdl3.",0);
+        //      res/values/cam.xml 에 있는 value값들을 가져와서 생성자로 만든다
+        String[] cam1_Value = getResources().getStringArray(R.array.cam1);
+        String[] cam2_Value = getResources().getStringArray(R.array.cam2);
+
+        cam1 = new IpCam(cam1_Value,0);
         Log.d("카메라", "" + cam1.getCamNumber());
-        cam2 = new IpCam("168.115.119.114","admin","gusdlfdl3.",1);
+        cam2 = new IpCam(cam2_Value,1);
         Log.d("카메라", "" + cam2.getCamNumber());
 
         url = cam1.getJpegSnapShotURL();
@@ -74,21 +79,22 @@ public class Farm_now extends ActionBarActivity {
         //웹뷰를 Load함
         openWebView();
 
-        todayInfo.setText("이 영상은 " + cam_Year + "년 " + cam_Month + "월 " + cam_Day + "일 " + cam_Hour + "시"
-                + "에 촬영된 영상 입니다.");
+        //사진의 날짜 정보가 나오는 텍스트뷰 세팅 메소드
+        textInfoViewSet();
+
+        //확대기능에 대한 토스트 메시지
+        Toast.makeText(Farm_now.this, "확대 기능은 Kit-Kat 이후의 단말에서만 지원됩니다.", Toast.LENGTH_LONG).show();
     }
 
 
     // 버튼이 눌렷을 때 하는 행동
     public void mOnClick(View v){
 
-//        Log.d("주소1", url);
-//        Log.d("주소2", url2);
-
         switch (v.getId()){
             case R.id.btnReload:
                 cWeb1.loadData(createHtmlBody(url), "text/html", null);
                 cWeb2.loadData(createHtmlBody(url2), "text/html", null);
+                textInfoViewSet();
                 break;
         }
     }
@@ -101,11 +107,13 @@ public class Farm_now extends ActionBarActivity {
         testCam2 = webViewSet(testCam2,cam2);
 
         //API Version 이 KitKat 이하일 때와 이상일때를 나눈다.
+        /*
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
             cWeb1.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         }else{
             cWeb1.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
         }
+        */
 
         //일단 왜그런지는 모르겟지만 테스트웹뷰도 불러와야한다
         testCam.loadUrl(url);
@@ -145,5 +153,11 @@ public class Farm_now extends ActionBarActivity {
         set.setBuiltInZoomControls(true);
 
         return wv;
+    }
+
+    //날짜 나오는 텍스트를 변경시키는 함수
+    private void textInfoViewSet(){
+        todayInfo.setText("이 영상은 " + cam_Year + "년 " + cam_Month + "월 " + cam_Day + "일 " + cam_Hour + "시"
+                + "에 촬영된 영상 입니다.");
     }
 }

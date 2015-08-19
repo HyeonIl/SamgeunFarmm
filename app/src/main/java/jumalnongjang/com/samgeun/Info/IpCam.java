@@ -10,18 +10,13 @@ public class IpCam {
     private String camPW;
     private int camNumber;
 
-    //포트가 따로 지정되있을 경우의 생성자
-    public IpCam(String ipAddress, String httpPort, String camID, String camPW, int camNumber) {
-        this.ipAddress = ipAddress;
-        this.httpPort = httpPort;
-        this.camID = camID;
-        this.camPW = camPW;
+    //      res/values/cam.xml 에 있는 value값들을 가져와서 생성자로 만든다
+    public IpCam(String[] valueArray, int camNumber){
+        this.ipAddress = valueArray[0];
+        this.httpPort = valueArray[1];
+        this.camID = valueArray[2];
+        this.camPW = valueArray[3];
         this.camNumber = camNumber;
-    }
-
-    //포트가 기본포트인 80포트 경우 생성자
-    public IpCam(String ipAddress, String camID, String camPW,int camNumber) {
-        this(ipAddress,"80",camID,camPW,camNumber);
     }
 
     //Getter and Setter

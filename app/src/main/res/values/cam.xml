@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cam1">
+        <item>168.115.119.131</item>
+        <item>8081</item>
+        <item>admin</item>
+        <item>gusdlfdl3.</item>
+    </string-array>
+
+    <string-array name="cam2">
+        <item>168.115.119.114</item>
+        <item>8082</item>
+        <item>admin</item>
+        <item>gusdlfdl3.</item>
+    </string-array>
+
+</resources>
