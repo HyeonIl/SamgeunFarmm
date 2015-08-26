@@ -80,21 +80,6 @@ public class Farm_now extends ActionBarActivity {
         Toast.makeText(Farm_now.this, "확대 기능은 Kit-Kat 이후의 단말에서만 지원됩니다.", Toast.LENGTH_LONG).show();
     }
 
-
-    /**
-     * 갱신버튼이 눌렸을 때의 이벤트 처리
-     */
-    public void mOnClick(View v){
-
-        switch (v.getId()){
-            case R.id.btnReload:
-                cWeb1.loadData(createHtmlBody(url), "text/html", null);
-                cWeb2.loadData(createHtmlBody(url2), "text/html", null);
-                textInfoViewSet();
-                break;
-        }
-    }
-
     /**
      * 웹뷰들을 열고 해당 주소를 웹뷰에 전송하여 실행시킴
      */
@@ -158,5 +143,30 @@ public class Farm_now extends ActionBarActivity {
     private void textInfoViewSet(){
         todayInfo.setText("이 영상은 " + cam_Year + "년 " + cam_Month + "월 " + cam_Day + "일 " + cam_Hour + "시"
                 + "에 촬영된 영상 입니다.");
+    }
+
+
+    /**
+     * 버튼들의 처리
+     */
+
+    //카메라1 버튼
+    public void mOnclick(View v){
+
+        switch (v.getId()){
+            case R.id.cam1_Btn:
+                cWeb1.setVisibility(View.VISIBLE);
+                cWeb2.setVisibility(View.INVISIBLE);
+                cWeb1.loadData(createHtmlBody(url), "text/html", null);
+                textInfoViewSet();
+                //cWeb2.loadData(createHtmlBody(url2), "text/html", null);
+                break;
+            case R.id.cam2_Btn:
+                cWeb1.setVisibility(View.INVISIBLE);
+                cWeb2.setVisibility(View.VISIBLE);
+                break;
+            case R.id.cam3_Btn:
+                break;
+        }
     }
 }
