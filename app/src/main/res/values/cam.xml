@@ -7,8 +7,9 @@
         <item>gusdlfdl3.</item>
     </string-array>
 
+    <!--iptime DDNS기능-->
     <string-array name="cam2">
-        <item>168.115.119.114</item>
+        <item>coltraw5.iptime.org</item>
         <item>8082</item>
         <item>admin</item>
         <item>gusdlfdl3.</item>

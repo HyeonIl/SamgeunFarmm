@@ -35,7 +35,7 @@ public class Farm_now extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fram_now);
+        setContentView(R.layout.activity_farm_now);
         setTitle("실시간 농장사진");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
