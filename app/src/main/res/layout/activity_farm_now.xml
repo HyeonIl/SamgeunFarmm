@@ -8,8 +8,6 @@
     >
 
     <!--화면의 시간정보가 출력되는 텍스트 뷰-->
-
-
     <TextView
         android:id="@+id/todayText"
         android:text="null"
@@ -18,6 +16,7 @@
         android:layout_weight="6" />
 
 
+    <!-- 카메라를 전환시키는 버튼3개가 가로정렬되는 리니어 레이아웃-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -78,6 +77,12 @@
         android:id="@+id/camera2" />
 
 
+
+
+
+
+
+
     <!--이건 사진을 제대로 보여주기위한 눈에는 보이지 않는 웹뷰-->
 
     <WebView
@@ -90,6 +95,12 @@
         android:layout_height="0dp"
         android:layout_weight="0"
         android:id="@+id/testCam2" />
+    <WebView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="0"
+        android:id="@+id/testCam3" />
+
 
 
 </LinearLayout>

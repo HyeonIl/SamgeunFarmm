@@ -166,6 +166,8 @@ public class Farm_now extends ActionBarActivity {
                 cWeb2.setVisibility(View.VISIBLE);
                 break;
             case R.id.cam3_Btn:
+                cWeb1.reload();
+                cWeb2.reload();
                 break;
         }
     }

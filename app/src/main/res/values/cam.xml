@@ -9,10 +9,20 @@
 
     <!--iptime DDNS기능-->
     <string-array name="cam2">
-        <item>coltraw5.iptime.org</item>
+        <item>coltraw.iptime.org</item>
         <item>8082</item>
-        <item>admin</item>
-        <item>gusdlfdl3.</item>
+        <item>guest</item>
+        <item>guest</item>
     </string-array>
+
+    <string-array name="cam3">
+        <item>samgeun.iptime.org</item>
+        <item>8083</item>
+        <item>guest</item>
+        <item>guest</item>
+    </string-array>
+
+
+
 
 </resources>
