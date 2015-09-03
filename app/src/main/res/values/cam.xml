@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="cam1">
-        <item>168.115.119.131</item>
+        <item>samgeun.iptime.org</item>
         <item>8081</item>
-        <item>admin</item>
-        <item>gusdlfdl3.</item>
+        <item>guest</item>
+        <item>guest</item>
     </string-array>
 
     <!--iptime DDNS기능-->

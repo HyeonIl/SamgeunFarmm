@@ -8,6 +8,7 @@ import android.webkit.HttpAuthHandler;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,9 +24,11 @@ public class Farm_now extends ActionBarActivity {
     //현재 프로젝트 진행중의 카메라는 2대이고 카메라 갯수가 늘어남에따라 웹뷰의 숫자도 늘어나야한다
     //아무래도 주소가 jpg가 아니라 cgi 를 통한 뭔가가 있는데 그것때문에 testCam이 있어야 한다. 웹뷰의 갯수만큼 testCam뷰의 숫자도 늘어나야함
 
-    IpCam cam1,cam2;
-    WebView cWeb1,cWeb2,testCam,testCam2;
-    String url,url2;
+    IpCam cam1,cam2,cam3;
+    WebView cWeb1,cWeb2,cWeb3;
+    WebView cWeb1_detail,cWeb2_detail,cWeb3_detail;
+    LinearLayout cam1_View,cam2_View,cam3_View;
+    String url,url2,url3;
     Calendar myCal;
     int cam_Year,cam_Month,cam_Day,cam_Hour;
 
@@ -54,21 +57,29 @@ public class Farm_now extends ActionBarActivity {
         //      res/values/cam.xml 에 있는 value값들을 가져와서 생성자로 만든다
         String[] cam1_Value = getResources().getStringArray(R.array.cam1);
         String[] cam2_Value = getResources().getStringArray(R.array.cam2);
+        String[] cam3_Value = getResources().getStringArray(R.array.cam3);
 
         cam1 = new IpCam(cam1_Value,0);
         Log.d("카메라", "" + cam1.getCamNumber());
         cam2 = new IpCam(cam2_Value,1);
         Log.d("카메라", "" + cam2.getCamNumber());
+        cam3 = new IpCam(cam3_Value,2);
 
         url = cam1.getJpegSnapShotURL();
         url2 = cam2.getJpegSnapShotURL();
+        url3 = cam3.getJpegSnapShotURL();
 
         //xml 파일과 자바 소스의 연동
         cWeb1 = (WebView)findViewById(R.id.camera1);
         cWeb2 = (WebView)findViewById(R.id.camera2);
-        testCam = (WebView)findViewById(R.id.testCam);
-        testCam2 = (WebView)findViewById(R.id.testCam2);
+        cWeb3 = (WebView)findViewById(R.id.camera3);
+        cWeb1_detail = (WebView)findViewById(R.id.cam1_detail);
+        cWeb2_detail = (WebView)findViewById(R.id.cam2_detail);
+        cWeb3_detail = (WebView)findViewById(R.id.cam3_detail);
         todayInfo = (TextView)findViewById(R.id.todayText);
+        cam1_View = (LinearLayout)findViewById(R.id.cam1_View);
+        cam2_View = (LinearLayout)findViewById(R.id.cam2_View);
+        cam3_View = (LinearLayout)findViewById(R.id.cam3_View);
 
         //웹뷰를 Load함
         openWebView();
@@ -77,7 +88,7 @@ public class Farm_now extends ActionBarActivity {
         textInfoViewSet();
 
         //확대기능에 대한 토스트 메시지
-        Toast.makeText(Farm_now.this, "확대 기능은 Kit-Kat 이후의 단말에서만 지원됩니다.", Toast.LENGTH_LONG).show();
+        //Toast.makeText(Farm_now.this, "확대 기능은 Kit-Kat 이후의 단말에서만 지원됩니다.", Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -87,8 +98,10 @@ public class Farm_now extends ActionBarActivity {
 
         cWeb1 = webViewSet(cWeb1,cam1);
         cWeb2 = webViewSet(cWeb2,cam2);
-        testCam = webViewSet(testCam,cam1);
-        testCam2 = webViewSet(testCam2,cam2);
+        cWeb3 = webViewSet(cWeb3,cam3);
+        cWeb1_detail = webViewSet(cWeb1_detail,cam1);
+        cWeb2_detail = webViewSet(cWeb2_detail,cam2);
+        cWeb3_detail = webViewSet(cWeb3_detail,cam3);
 
         //API Version 이 KitKat 이하일 때와 이상일때를 나눈다.
         /*
@@ -99,11 +112,12 @@ public class Farm_now extends ActionBarActivity {
         }
         */
 
-        //일단 왜그런지는 모르겟지만 테스트웹뷰도 불러와야한다
-        testCam.loadUrl(url);
-        testCam2.loadUrl(url2);
+        cWeb1_detail.loadUrl(url);
+        cWeb2_detail.loadUrl(url2);
+        cWeb3_detail.loadUrl(url3);
         cWeb1.loadData(createHtmlBody(url), "text/html", null);
         cWeb2.loadData(createHtmlBody(url2), "text/html", null);
+        cWeb3.loadData(createHtmlBody(url3), "text/html", null);
     }
 
     //웹뷰의 이미지가 디바이스의 크기에 맞추어서 가운데 정렬과 100%의 크기에 나올 수 있도록 Http Tag를 추가하여 주소를
@@ -133,8 +147,10 @@ public class Farm_now extends ActionBarActivity {
 
         WebSettings set = wv.getSettings();
         set.setJavaScriptEnabled(true);
-        set.setSupportZoom(true);
-        set.setBuiltInZoomControls(true);
+
+        //줌기능 잠시 없앤다
+        //set.setSupportZoom(true);
+        //set.setBuiltInZoomControls(true);
 
         return wv;
     }
@@ -155,19 +171,19 @@ public class Farm_now extends ActionBarActivity {
 
         switch (v.getId()){
             case R.id.cam1_Btn:
-                cWeb1.setVisibility(View.VISIBLE);
-                cWeb2.setVisibility(View.INVISIBLE);
-                cWeb1.loadData(createHtmlBody(url), "text/html", null);
-                textInfoViewSet();
-                //cWeb2.loadData(createHtmlBody(url2), "text/html", null);
+                cam1_View.setVisibility(View.VISIBLE);
+                cam2_View.setVisibility(View.INVISIBLE);
+                cam3_View.setVisibility(View.INVISIBLE);
                 break;
             case R.id.cam2_Btn:
-                cWeb1.setVisibility(View.INVISIBLE);
-                cWeb2.setVisibility(View.VISIBLE);
+                cam1_View.setVisibility(View.INVISIBLE);
+                cam2_View.setVisibility(View.VISIBLE);
+                cam3_View.setVisibility(View.INVISIBLE);
                 break;
             case R.id.cam3_Btn:
-                cWeb1.reload();
-                cWeb2.reload();
+                cam1_View.setVisibility(View.INVISIBLE);
+                cam2_View.setVisibility(View.INVISIBLE);
+                cam3_View.setVisibility(View.VISIBLE);
                 break;
         }
     }
