@@ -9,7 +9,7 @@
 
     <!--iptime DDNS기능-->
     <string-array name="cam2">
-        <item>coltraw.iptime.org</item>
+        <item>samgeun.iptime.org</item>
         <item>8082</item>
         <item>guest</item>
         <item>guest</item>
